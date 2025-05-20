@@ -45,7 +45,7 @@ public class FloorVisualizer : MonoBehaviour
             Quaternion lookRotation = Quaternion.LookRotation(dir3D);
             Quaternion additionalRotation = Quaternion.Euler(0, 90, 0);
             Quaternion finalRotation = lookRotation * additionalRotation;
-            Instantiate(_wallPrefab, position, finalRotation, _floorParent);
+            Instantiate(_wallPrefab, position, finalRotation, _wallParent);
         }
     }
 }

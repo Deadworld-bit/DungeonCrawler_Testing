@@ -5,11 +5,12 @@ using Random = UnityEngine.Random;
 
 public class RandomWalkGenerator : AbstactDungeonGenerator
 {
-    [SerializeField] private RandomWalkMapData _mapData;
+    [SerializeField] protected RandomWalkMapData _mapData;
+
     protected override void RunProceduralGeneration()
     {
         _floorVisualizer.Clear();
-        HashSet<Vector2Int> floorPositions = RunRandomWalk();
+        HashSet<Vector2Int> floorPositions = RunRandomWalk(_mapData, _startPosition);
         _floorVisualizer.InstantiateFloorTitles(floorPositions);
         WallGenerator.GenerateWalls(floorPositions, _floorVisualizer);
         // foreach (var position in floorPositions)
@@ -18,16 +19,16 @@ public class RandomWalkGenerator : AbstactDungeonGenerator
         // }
     }
 
-    private HashSet<Vector2Int> RunRandomWalk()
+    protected HashSet<Vector2Int> RunRandomWalk(RandomWalkMapData parameters, Vector2Int position)
     {
-        var currentPosition = _startPosition;
+        var currentPosition = position;
         HashSet<Vector2Int> floorPositions = new HashSet<Vector2Int>();
 
-        for (int i = 0; i < _mapData._interations; i++)
+        for (int i = 0; i < parameters._interations; i++)
         {
-            var path = ProceduralGenerationAlgorithm.RandomWalk(currentPosition, _mapData._walkLength);
+            var path = ProceduralGenerationAlgorithm.RandomWalk(currentPosition, parameters._walkLength);
             floorPositions.UnionWith(path);
-            if (_mapData._startRandomlyEachInteration)
+            if (parameters._startRandomlyEachInteration)
             {
                 currentPosition = floorPositions.ElementAt(Random.Range(0, floorPositions.Count));
             }
