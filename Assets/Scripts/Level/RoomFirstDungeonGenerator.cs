@@ -26,7 +26,14 @@ public class RoomFirstDungeonGenerator : RandomWalkGenerator
          new Vector3Int(_dungeonWidth, _dungeonHeight, 0)), _minRoomWidth, _minRoomHeight);
 
         HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
-        floor = CreateSimpleRooms(roomList);
+        if (_randomWalkRooms)
+        {
+            floor = CreateRoomsRandomly(roomList);
+        }
+        else
+        {
+            floor = CreateSimpleRooms(roomList);
+        }
 
         List<Vector2Int> roomCenters = new List<Vector2Int>();
         foreach (var room in roomList)
@@ -38,6 +45,29 @@ public class RoomFirstDungeonGenerator : RandomWalkGenerator
 
         _floorVisualizer.InstantiateFloorTitles(floor);
         WallGenerator.GenerateWalls(floor, _floorVisualizer);
+    }
+
+    private HashSet<Vector2Int> CreateRoomsRandomly(List<BoundsInt> roomList)
+    {
+        HashSet<Vector2Int> floor = new HashSet<Vector2Int>();
+
+        for (int i = 0; i < roomList.Count; i++)
+        {
+            var roomBounds = roomList[i];
+            var roomCenter = new Vector2Int(Mathf.RoundToInt(roomBounds.center.x), Mathf.RoundToInt(roomBounds.center.y));
+            var roomFloor = RunRandomWalk(_mapData, roomCenter);
+
+            foreach (var position in roomFloor)
+            {
+                if (position.x >= (roomBounds.xMin + _offset) && position.x <= (roomBounds.xMax - _offset) &&
+                   position.y >= (roomBounds.yMin + _offset) && position.y <= (roomBounds.yMax - _offset))
+                {
+                    floor.Add(position);
+                }
+            }
+        }
+
+        return floor;
     }
 
     private HashSet<Vector2Int> ConnectRooms(List<Vector2Int> roomCenters)
@@ -105,7 +135,7 @@ public class RoomFirstDungeonGenerator : RandomWalkGenerator
             }
             corridor.Add(position);
         }
-        
+
         return corridor;
     }
 

@@ -8,6 +8,8 @@ public class FloorVisualizer : MonoBehaviour
     [SerializeField] private Transform _floorParent;
     [SerializeField] private Transform _wallParent;
     [SerializeField] private float _cellSize = 1f;
+    [SerializeField] private float _wallSpawnHeight = 2f;
+    [SerializeField] private float _wallSpawnRotation = 90f;
 
     public void Clear()
     {
@@ -36,14 +38,14 @@ public class FloorVisualizer : MonoBehaviour
         {
             Vector3 position = new Vector3(
                 (floorPosition.x + direction.x * 0.5f) * _cellSize,
-                2f,
+                _wallSpawnHeight,
                 (floorPosition.y + direction.y * 0.5f) * _cellSize
             );
 
             Vector3 dir3D = new Vector3(direction.x, 0, direction.y);
 
             Quaternion lookRotation = Quaternion.LookRotation(dir3D);
-            Quaternion additionalRotation = Quaternion.Euler(0, 90, 0);
+            Quaternion additionalRotation = Quaternion.Euler(0, _wallSpawnRotation, 0);
             Quaternion finalRotation = lookRotation * additionalRotation;
             Instantiate(_wallPrefab, position, finalRotation, _wallParent);
         }

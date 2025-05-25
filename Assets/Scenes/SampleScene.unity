@@ -1638,11 +1638,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bb9c73b9c00fb940af29658aa14cd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _floorPrefab: {fileID: 7466370163023028923, guid: 88d5ec6013011de48a4dbc820277128f, type: 3}
-  _wallPrefab: {fileID: 1883940014617709878, guid: 9dfbfc06d22e3e94c96201e56e190193, type: 3}
+  _floorPrefab: {fileID: 1114036843042427300, guid: d0b4f2fd6af93dd42ad1e2d4768b24c5, type: 3}
+  _wallPrefab: {fileID: 3914028749615739510, guid: f14544ac17d65f1448a1244122e56a7c, type: 3}
   _floorParent: {fileID: 1159285389}
   _wallParent: {fileID: 1639949503}
   _cellSize: 2
+  _wallSpawnHeight: 0
+  _wallSpawnRotation: 0
 --- !u!4 &1453285053
 Transform:
   m_ObjectHideFlags: 0
