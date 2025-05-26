@@ -1638,13 +1638,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3bb9c73b9c00fb940af29658aa14cd7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _floorPrefab: {fileID: 1114036843042427300, guid: d0b4f2fd6af93dd42ad1e2d4768b24c5, type: 3}
-  _wallPrefab: {fileID: 3914028749615739510, guid: f14544ac17d65f1448a1244122e56a7c, type: 3}
   _floorParent: {fileID: 1159285389}
   _wallParent: {fileID: 1639949503}
+  _environments:
+  - name: Dungeon
+    floorPrefabs:
+    - prefab: {fileID: 5445150772888537185, guid: 0165d1c059496fc45887eaba419d4b41, type: 3}
+      weight: 0.2
+    - prefab: {fileID: 4372162623140284234, guid: 979c7af5f1b532d4183d62da453be516, type: 3}
+      weight: 0.3
+    - prefab: {fileID: 9114928819843438142, guid: 7e8fee2d92c08654384dab488608b778, type: 3}
+      weight: 0.2
+    - prefab: {fileID: 64616500625135307, guid: dfc392eaeabf367469f3c99f97b90611, type: 3}
+      weight: 0.3
+    wallPrefabs:
+    - prefab: {fileID: 3914028749615739510, guid: f14544ac17d65f1448a1244122e56a7c, type: 3}
+      weight: 0.6
+      spawnHeight: 0
+      additionalRotation: 0
+    - prefab: {fileID: 3914028749615739510, guid: e3ffb7ea240451b41af1120366433f3e, type: 3}
+      weight: 0.4
+      spawnHeight: 0
+      additionalRotation: 0
+    - prefab: {fileID: 3914028749615739510, guid: ac50342f0b7de25408e26c48ceead7c1, type: 3}
+      weight: 0.4
+      spawnHeight: 0
+      additionalRotation: 0
+    - prefab: {fileID: 3914028749615739510, guid: 92c20703b32c4854fadbe895627b1dc7, type: 3}
+      weight: 0.2
+      spawnHeight: 0
+      additionalRotation: 0
+    - prefab: {fileID: 3914028749615739510, guid: c573f110b9a4262489b618224434fca6, type: 3}
+      weight: 0.4
+      spawnHeight: 0
+      additionalRotation: 0
+  _currentEnvironmentIndex: 0
   _cellSize: 2
-  _wallSpawnHeight: 0
-  _wallSpawnRotation: 0
 --- !u!4 &1453285053
 Transform:
   m_ObjectHideFlags: 0
